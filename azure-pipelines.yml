@@ -5,10 +5,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - name: aws_access_key
-    value: $(AWS_ACCESS_KEY)
-  - name: aws_secret_key
-    value: $(AWS_SECRET_KEY)
+  - name: AWS_ACCESS_KEY
+    value: $(access-key)
+  - name: AWS_SECRET_KEY
+    value: $(secret-key)
 
 jobs:
 - job: deploy_infrastructure
@@ -32,7 +32,7 @@ jobs:
   - script: |
       cd $(Build.SourcesDirectory)/_aws-ec2-terraform-AzureDevops
       terraform apply -auto-approve \
-        -var "aws_access_key=$(AWS_ACCESS_KEY)" \
-        -var "aws_secret_key=$(AWS_SECRET_KEY)"
+        -var "AWS_ACCESS_KEY=$(access-key)" \
+        -var "AWS_SECRET_KEY=$(secret-key)"
     displayName: 'Terraform Apply'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
