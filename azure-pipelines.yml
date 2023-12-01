@@ -18,6 +18,7 @@ jobs:
       packageType: 'sdk'
       version: '2.1.x'
       installationPath: $(Agent.ToolsDirectory)/dotnet
+      
   - script: |
       aws configure set aws_access_key_id $(access-key)
       aws configure set aws_secret_access_key $(secret-key)
