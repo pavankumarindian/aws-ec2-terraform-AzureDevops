@@ -7,7 +7,7 @@ pool:
 variables:
   - name: aws_access_key_id
     value: $(access-key)
-  - name: aws_secret_access_key_id
+  - name: aws_secret_access_key
     value: $(secret-key)
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
       installationPath: $(Agent.ToolsDirectory)/dotnet
   - script: |
       aws configure set aws_access_key_id $(access-key)
-      aws configure set aws_secret_access_key_id $(secret-key)
+      aws configure set aws_secret_access_key $(secret-key)
     displayName: 'Configure AWS CLI'
 
   - script: |
