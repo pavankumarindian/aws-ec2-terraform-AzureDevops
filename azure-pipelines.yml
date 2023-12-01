@@ -35,7 +35,7 @@ jobs:
   - script: |
       cd $(Build.SourcesDirectory)/_aws-ec2-terraform-AzureDevops
       terraform apply -auto-approve \
-        -var "aws_access_key=${{ variables.AWS_ACCESS_KEY }}" \
-        -var "aws_secret_key=${{ variables.AWS_SECRET_KEY }}"
+        -var "aws_access_key=$(AWS_ACCESS_KEY)" \
+        -var "aws_secret_key=$(AWS_SECRET_KEY)"
     displayName: 'Terraform Apply'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
